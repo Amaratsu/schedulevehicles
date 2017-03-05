@@ -1,6 +1,6 @@
 ﻿<h2 class="text-center">Registration</h2>
 
-<form class="form-horizontal" method="post">
+<form class="form-horizontal">
     <fieldset>
 
         <legend>Regisration</legend>
@@ -41,15 +41,52 @@
         </div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="Send"></label>
             <div class="col-md-8">
-                <button id="Send" name="Send" class="btn btn-success">Send</button>
-                <div id="cancel" name="cancel" class="btn btn-warning">@Html.ActionLink("Cancel", "Index")</div>
+                <button type="button" id="send" name="send" class="btn btn-success">Send</button>
+                <button  type="button" id="cancel" name="cancel" class="btn btn-warning">@Html.ActionLink("Cancel", "Index")</button>
             </div>
         </div>
 
     </fieldset>
 </form>
+
+<script>
+    $("#send")
+        .click(function () {
+            var user = {
+                firstName: null,
+                lastname: null,
+                email: null,
+                password: null,
+                birthData: null
+            }
+            //var firsName = $("#firstNameame").val();
+            var lastname = $("#lastName").val();
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var birthData = $("#birthData").val();
+
+            user.firstName = $("#firstNameame").val();
+            user.lastname = lastname;
+            user.email = email;
+            user.password = password;
+            user.birthData = birthData;
+
+            $.ajax({
+                type: 'POST',
+                //contentType: "application/json; charset=utf-8",
+                //dataType: 'json',
+                url: "api/Registration/ValidateRegistration",
+                data: user,
+                success: function (data) {
+                    console.log(data.arguments);
+                },
+                error: function (data) {
+                    console.log( data.arguments);
+                }
+            });
+        });
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

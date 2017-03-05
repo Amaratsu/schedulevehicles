@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Domain.Entities;
 
 namespace WebUI.Controllers
 {
@@ -20,10 +19,14 @@ namespace WebUI.Controllers
             return View("Registration");
         }
 
-        [HttpPost]
-        public ActionResult Registration(User user)
+        public ActionResult RegistrationSuccess()
         {
-            return View("RegistrationComplited");
+            return View("RegistrationSuccess");
+        }
+
+        public ActionResult RegistrationError()
+        {
+            return View("RegistrationError");
         }
     }
 }

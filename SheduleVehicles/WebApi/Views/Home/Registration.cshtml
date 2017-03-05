@@ -1,0 +1,45 @@
+﻿<div class="container">
+    <div class="col-sm-6">
+        <h1 class="header">Registration</h1>
+        <div id="errorEmail"></div>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="firstName" class="col-sm-10">First name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="firstName" placeholder="First name" name="firstName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName" class="col-sm-10">Last name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lastName" placeholder="Last name" name="lastName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-10">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-10">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="birthData" class="col-sm-10">Birth data</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="birthData" placeholder="Birth data" name="birthData">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-success">Send</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/Scripts/Registration/validateRegistration.js"></script>
