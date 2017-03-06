@@ -1,4 +1,5 @@
-﻿(function() {
+﻿//Registration
+(function () {
 
     var app = {
         initialize: function() {
@@ -57,7 +58,7 @@
                         val = input.val(),
                         formGroup = input.parents('.form-group'),
                         label = formGroup.find('label').text().toLowerCase(),
-                        textError = 'Введите ' + label;
+                        textError = 'Enter ' + label;
 
                     if (val.length === 0) {
                         formGroup.addClass('has-error').removeClass('has-success');

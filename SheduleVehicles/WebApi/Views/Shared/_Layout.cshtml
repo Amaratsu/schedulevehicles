@@ -7,8 +7,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/Registration/Authorization.js"></script>
 </head>
-<body>
+<body onload="autoAuth()">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -22,11 +23,27 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Registration", "Registration", "Home")</li>
-                    <li>@Html.ActionLink("Guest", "About", "Home")</li>
-                    <li>@Html.ActionLink("Logout", "About", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">          
+                    <li>
+                        <div id="stateAuth" style="display: none">
+                            <div class="form-inline" style="margin-top: 8px">
+                                <div class="form-group">
+                                    <label class="sr-only" for="emailAuth">Email</label>
+                                    <input type="email" class="form-control" id="emailAuth" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="passwordAuth">Password</label>
+                                    <input type="password" class="form-control" id="passwordAuth" placeholder="Password">
+                                </div>
+                                <button type="submit" class="btn btn-default" onclick="auth()">Sign in</button>
+                            </div>
+                        </div>
+                        <div id="stateUser" class="navbar-brand" style="padding-top: 8px; display: none">
+                            Hello, <a id="firstAndLastName"></a><button type="button" class="btn btn-warning" style="margin-left: 10px" onclick="logout()">Logout</button>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

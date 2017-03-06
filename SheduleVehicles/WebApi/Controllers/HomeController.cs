@@ -25,6 +25,10 @@ namespace WebApi.Controllers
         [HttpPost]
         public string Registration(User user)
         {
+            if (string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password))
+            {
+                return "fieldError";
+            }
             bool alreadyExists = db.Users.Any(usr => usr.Email.ToLower() == user.Email.ToLower());
             if (alreadyExists == false)
             {
@@ -34,5 +38,27 @@ namespace WebApi.Controllers
             }
             return "saveError";
         }
+
+        [HttpPost]
+        public string Authorization(User user)
+        {
+            if (user.Email == null || user.Password == null || string.IsNullOrEmpty(user.Email.Replace(" ", string.Empty)) || string.IsNullOrEmpty(user.Password.Replace(" ", string.Empty)))
+            {
+                return "fieldError";
+            }
+            bool email = db.Users.Any(usr => usr.Email.ToLower() == user.Email.ToLower() && usr.Password.ToLower() == user.Password.ToLower());
+            if (email == false)
+            {
+                return "errorAthorization";
+            }
+            User userAuth = db.Users.FirstOrDefault(usr => usr.Email == user.Email);
+            return userAuth.FirstName + " " + userAuth.LastName;
+        }
+
+        public string UpdateSession()
+        {
+            return "";
+        }
+
     }
 }
