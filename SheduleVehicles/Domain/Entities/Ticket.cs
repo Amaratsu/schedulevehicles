@@ -14,6 +14,12 @@ namespace Domain.Entities
         public string LastNamePassenger { get; set; }
         public string DocumentNumberPassenger { get; set; }
         public int NumberPassenger { get; set; }
-        public string Status { get; set; }
+        public enum Status
+        {
+            Reserved,
+            BoughtOut
+        }
+
+        public User User { get; set; }
     }
 }

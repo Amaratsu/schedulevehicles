@@ -22,5 +22,6 @@ namespace Domain.Entities
         [Required]
         public DateTime BirthData { get; set; }
 
+        public virtual List<Ticket> Tickets { get; set; }
     }
 }

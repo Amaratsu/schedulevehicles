@@ -10,7 +10,12 @@ namespace Domain.Entities
     {
         public int OrderId { get; set; }
         public int VoyageId { get; set; }
-        public string Status { get; set; }
+        public enum Status
+        {
+            Reserved,
+            BoughtOut
+        }
 
+        public Voyage Voyage { get; set; }
     }
 }
