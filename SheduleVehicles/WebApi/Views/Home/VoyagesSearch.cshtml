@@ -1,0 +1,28 @@
+﻿@model IQueryable<Domain.Entities.Voyage>
+
+@{
+    ViewBag.Title = "VoyagesSearch";
+}
+
+<h2>VoyagesSearch</h2>
+
+<div class="text-center">
+    <br />
+    <form method="get">
+        <p>
+            <input type="datetime" name="searchDepartureDateTime" required />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+    <br />
+</div>
+@*<div class="text-center">
+    <br />
+    <form method="get">
+        <p>
+            <input type="number" name="searchArrival" required />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+    <br />
+</div>*@

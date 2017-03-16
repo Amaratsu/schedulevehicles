@@ -9,17 +9,23 @@ namespace Domain.Entities
 {
     public class Voyage
     {
-        public int VoyageId { get; set; }
-        public int DepartureId { get; set; }
-        public int ArrivalId { get; set; }
-        public DateTime DepartureDateTime { get; set; }
-        public DateTime ArrivalDataDateTime { get; set; }
+        public int Id { get; set; }
+        public DateTime DepartureDate { get; set; }
+        public DateTime ArrivalDate { get; set; }
         public TimeSpan TravelTime { get; set; }
-        public int VoyageNumber { get; set; }
-        public string VoyageName { get; set; }
-        public int NumberSeats { get; set; }
-        public decimal TicketCost { get; set; }
+        public int Number { get; set; }
+        public string Name { get; set; }
+        public int NumberOfSeats { get; set; }
+        public decimal OneTicketCost { get; set; }
+        //[ForeignKey("DepartureBusStop")]
+        public int DepartureBusStopId { get; set; }
+        //[ForeignKey("ArrivalBusStop")]
+        public int ArrivalBusStopId { get; set; }
+        //
+        public virtual ICollection<Order> Orders { get; set; }
+        //
+        public virtual BusStop DepartureBusStop { get; set; }
+        public virtual BusStop ArrivalBusStop { get; set; }
 
-        public virtual List<Order> Orders { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Domain.Entities
     public class User
     {  
         [Required]
-        public int UserId { get; set; }
+        public int Id { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -20,8 +20,8 @@ namespace Domain.Entities
         [Required]
         public string Password { get; set; }
         [Required]
-        public DateTime BirthData { get; set; }
-
-        public virtual List<Ticket> Tickets { get; set; }
+        public DateTime BirthDate { get; set; }
+        //
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

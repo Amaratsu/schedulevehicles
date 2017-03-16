@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,9 +12,15 @@ namespace WebApi.Controllers
     {
         private UserContext db = new UserContext();
 
-        public ActionResult Index()
+        public ActionResult Index(string searchName)
         {
-            return View();
+            var busStops = from b in db.BusStops select b;
+            if (!String.IsNullOrEmpty(searchName))
+            {
+                busStops = busStops.Where(b => b.Name.Contains(searchName));
+                return View(busStops);
+            }
+            return View("Index");
         }
 
         [HttpGet]
@@ -54,11 +61,5 @@ namespace WebApi.Controllers
             User userAuth = db.Users.FirstOrDefault(usr => usr.Email == user.Email);
             return userAuth.FirstName + " " + userAuth.LastName;
         }
-
-        public string UpdateSession()
-        {
-            return "";
-        }
-
     }
 }
