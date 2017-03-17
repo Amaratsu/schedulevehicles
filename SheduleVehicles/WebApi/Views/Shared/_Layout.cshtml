@@ -18,11 +18,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Shedule Vehicles", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Search by name bus stop", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Search Bus Stops Of Arrival And Departure", "SearchBusStopsOfArrivalAndDeparture", "Home")</li>
                     <li>@Html.ActionLink("Registration", "Registration", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">          
@@ -50,14 +50,9 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year</p>
-        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -14,13 +15,67 @@ namespace WebApi.Controllers
 
         public ActionResult Index(string searchName)
         {
-            var busStops = from b in db.BusStops select b;
-            if (!String.IsNullOrEmpty(searchName))
+            if (searchName != null && !String.IsNullOrEmpty(searchName))
             {
-                busStops = busStops.Where(b => b.Name.Contains(searchName));
-                return View(busStops);
+                using (var d = new UserContext())
+                {
+                    var busStops = from busStop in d.BusStops select busStop;
+                    return
+                        View(
+                            busStops.Where(b => b.Name == searchName)
+                                .Include(bs => bs.CurrentBusStopIsDepartureForVoyages)
+                                .Include(sb => sb.CurrentBusStopIsArrivalForVoyages)
+                                .ToList());
+                }
             }
             return View("Index");
+        }
+
+        //[HttpGet]
+        //public ActionResult SearchByDate()
+        //{
+        //    var ds = new DateTime(2017, 3, 15, 14, 30, 0).Date;
+        //    using (var d = new UserContext())
+        //    {
+        //        IQueryable<BusStop> busStops = from busStop in d.BusStops select busStop;
+
+        //        var s = busStops
+        //            .Include(bs => bs.CurrentBusStopIsDepartureForVoyages)
+        //            .Where(
+        //                x =>
+        //                    x.CurrentBusStopIsDepartureForVoyages.Any(
+        //                        stop => DbFunctions.TruncateTime(stop.DepartureDate) == ds)).ToList();
+
+        //        return View();
+        //    }
+        //}
+
+        public ActionResult SearchBusStopsOfArrivalAndDeparture(string searchForDepartureStops, string searchForArrivalStops)
+        {
+            if (searchForDepartureStops != null && !String.IsNullOrEmpty(searchForDepartureStops))
+            {
+                
+                using (var d = new UserContext())
+                {
+                    var busStops = from busStop in d.BusStops select busStop;
+                        
+                    return View(busStops
+                            .Include(bs => bs.CurrentBusStopIsDepartureForVoyages)
+                            .Where(x => x.Name == searchForDepartureStops).ToList());
+                }
+            }
+
+            if (searchForArrivalStops != null && !String.IsNullOrEmpty(searchForArrivalStops))
+            {
+                using (var d = new UserContext())
+                {
+                    var busStops = from busStop in d.BusStops select busStop;
+                        
+                    return View(busStops.Include(bs => bs.CurrentBusStopIsArrivalForVoyages)
+                            .Where(x => x.Name == searchForArrivalStops).ToList());
+                }
+            }
+            return View("SearchBusStopsOfArrivalAndDeparture");
         }
 
         [HttpGet]

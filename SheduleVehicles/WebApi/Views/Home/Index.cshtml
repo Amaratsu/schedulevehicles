@@ -1,23 +1,49 @@
 ﻿@model IEnumerable<Domain.Entities.BusStop>
     
-<h2 class="text-center">Search Bus Stop Nane</h2>
+<h2 class="text-center">Search bus stop nane</h2>
 
-<div class="text-center">
-    <br />
+<div class="text-center form-inline col-md-12 col-sm-12 col-xs-12">
     <form method="get">
-        <p>
-            <input type="search" name="searchName" placeholder="Минск" required />
-            <input type="submit" value="Search" />
-        </p>
+        <input class="form-control" type="text" name="searchName" placeholder="Минск" required />
+        <input class="form-control btn btn-info" type="submit" value="Search" />
     </form>
-    <br />
 </div>
 
 @if (Model != null)
 {
     foreach (var item in Model)
     {
-       <p><b>Name:</b> @item.Name</p>
-        <p><b>Description:</b> @item.Description</p>
+        <div class="">
+            <p><b>Name:</b> @item.Name</p>
+            <p><b>Description:</b> @item.Description</p>
+            <hr/>
+        </div>
+        foreach (var x in item.CurrentBusStopIsDepartureForVoyages)
+        {
+            <div class="col-md-3 col-sm-4 col-xs-6 well">
+                <p><b>Number:</b> @x.Number</p>
+                <p><b>Name:</b> @x.Name</p>
+                <p><b>Departure date:</b> @x.DepartureDate</p>
+                <p><b>Arrival date:</b> @x.ArrivalDate</p>
+                <p><b>Travel time:</b> @x.TravelTime</p>
+                <p><b>Number of seats:</b> @x.NumberOfSeats</p>
+                <p><b>One ticket cost:</b> @x.OneTicketCost руб.
+                </p>
+            </div>
+        }
+        foreach (var y in item.CurrentBusStopIsArrivalForVoyages)
+        {
+
+            <div class="col-md-3 col-sm-4 col-xs-6 well">
+                <p><b>Number:</b> @y.Number</p>
+                <p><b>Name:</b> @y.Name</p>
+                <p><b>Departure date:</b> @y.DepartureDate</p>
+                <p><b>Arrival date:</b> @y.ArrivalDate</p>
+                <p><b>Travel time:</b> @y.TravelTime</p>
+                <p><b>Number of seats:</b> @y.NumberOfSeats</p>
+                <p><b>One ticket cost:</b> @y.OneTicketCost руб.
+                </p>
+            </div>
+        }
     }
 }

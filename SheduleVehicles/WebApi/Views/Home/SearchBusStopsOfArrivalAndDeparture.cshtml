@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Domain.Entities.BusStop>
+
+@{
+    ViewBag.Title = "Search for bus stops of arrival and departure";
+}
+
+<h2 class="text-center">Search for bus stops of arrival and departure</h2>
+
+<div class="row form-inline text-center">
+    <div class="col-md-6 col-xs-6 col-sm-6">
+        <form method="get">
+                <input class="form-control" type="text" name="searchForDepartureStops" required placeholder="Enter bus stop of departure"/>
+                <input class="form-control btn btn-info" type="submit" value="Search"/>
+        </form>
+    </div>
+    <div class="col-md-6 col-xs-6 col-sm-6">
+        <form method="get">
+            <input class="form-control" type="text" name="searchForArrivalStops" required placeholder="Enter bus stop of arrival"/>
+            <input class="form-control btn btn-info" type="submit" value="Search"/>
+        </form>
+    </div>
+    <hr/>
+</div>
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        if (item.CurrentBusStopIsDepartureForVoyages != null)
+        {
+            <h3 class="text-center">List for bus stops of departure.</h3>
+
+            foreach (var x in item.CurrentBusStopIsDepartureForVoyages)
+            {
+                <div class="col-md-3 col-sm-4 col-xs-6 well">
+                    <p><b>Number:</b> @x.Number</p>
+                    <p><b>Name:</b> @x.Name</p>
+                    <p><b>Departure Date:</b> @x.DepartureDate</p>
+                    <p><b>Arrival Date:</b> @x.ArrivalDate</p>
+                    <p><b>Travel Time:</b> @x.TravelTime</p>
+                    <p><b>Number Of Seats:</b> @x.NumberOfSeats</p>
+                    <p><b>One Ticket Cost:</b> @x.OneTicketCost руб.
+                    </p></div>
+            }
+        }
+    }
+}
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        if (item.CurrentBusStopIsArrivalForVoyages != null)
+        {
+            <h3 class="text-center">List for bus stops of arrival.</h3>
+
+            foreach (var y in item.CurrentBusStopIsArrivalForVoyages)
+            {
+                <div class="col-md-3 col-sm-4 col-xs-6 well">
+                    <p><b>Number:</b> @y.Number</p>
+                    <p><b>Name:</b> @y.Name</p>
+                    <p><b>Departure Date:</b> @y.DepartureDate</p>
+                    <p><b>Arrival Date:</b> @y.ArrivalDate</p>
+                    <p><b>Travel Time:</b> @y.TravelTime</p>
+                    <p><b>Number Of Seats:</b> @y.NumberOfSeats</p>
+                    <p><b>One Ticket Cost:</b> @y.OneTicketCost руб.
+                    </p></div>
+            }
+        }
+    }
+}
