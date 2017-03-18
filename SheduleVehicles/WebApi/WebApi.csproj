@@ -288,6 +288,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Views\Home\SearchBusStopsOfArrivalAndDeparture.cshtml" />
+    <Content Include="Views\Home\SearchByDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

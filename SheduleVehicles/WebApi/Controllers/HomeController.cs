@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 using System.Web.Mvc;
 using Domain.Entities;
@@ -31,24 +32,24 @@ namespace WebApi.Controllers
             return View("Index");
         }
 
-        //[HttpGet]
-        //public ActionResult SearchByDate()
-        //{
-        //    var ds = new DateTime(2017, 3, 15, 14, 30, 0).Date;
-        //    using (var d = new UserContext())
-        //    {
-        //        IQueryable<BusStop> busStops = from busStop in d.BusStops select busStop;
-
-        //        var s = busStops
-        //            .Include(bs => bs.CurrentBusStopIsDepartureForVoyages)
-        //            .Where(
-        //                x =>
-        //                    x.CurrentBusStopIsDepartureForVoyages.Any(
-        //                        stop => DbFunctions.TruncateTime(stop.DepartureDate) == ds)).ToList();
-
-        //        return View();
-        //    }
-        //}
+        [HttpGet]
+        public ActionResult SearchByDate(DateTime? searchDate)
+        {
+            if (searchDate != null)
+            {
+                using (var d = new UserContext())
+                {
+                    var busStops = from busStop in d.BusStops select busStop;
+                    return View(busStops
+                        .Include(bs => bs.CurrentBusStopIsDepartureForVoyages)
+                        .Where(x=>x.CurrentBusStopIsDepartureForVoyages
+                        .Any(stop => DbFunctions
+                        .TruncateTime(stop.DepartureDate) == searchDate))
+                        .ToList());
+                }
+            }
+            return View("SearchByDate");
+        }
 
         public ActionResult SearchBusStopsOfArrivalAndDeparture(string searchForDepartureStops, string searchForArrivalStops)
         {
