@@ -1,0 +1,44 @@
+﻿<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/jquery-ui-timepicker-addon.min.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "SearchByDate";
+}
+
+<h2 class="text-center">Search by date and time</h2>
+
+<div class="row form-inline text-center">
+    <div class="text-center form-inline col-md-12 col-sm-12 col-xs-12">
+        <form method="get">
+            <input class="form-control date-time-picker text-center" type="datetime" name="searchByDateAndTime" required readonly="" placeholder="Click me"/>
+            <input class="form-control btn btn-info" type="submit" value="Search" />
+        </form>
+    </div>
+</div>
+
+<hr/>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        {           
+            <div class="col-md-3 col-sm-4 col-xs-6 well">
+                    <p><b>Number:</b> @item.Number</p>
+                    <p><b>Name:</b> @item.Name</p>
+                    <p><b>Departure Date:</b> @item.DepartureDate</p>
+                    <p><b>Arrival Date:</b> @item.ArrivalDate</p>
+                    <p><b>Travel Time:</b> @item.TravelTime</p>
+                    <p><b>Number Of Seats:</b> @item.NumberOfSeats</p>
+                    <p>
+                        <b>One Ticket Cost:</b> @item.OneTicketCost руб.
+                    </p>
+            </div>
+        }
+    }
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.min.js"></script>
+    <script src="~/Scripts/Date-time-picker/data-time-picker.js"></script>
+}

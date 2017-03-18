@@ -33,22 +33,20 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult SearchByDate(DateTime? searchDate)
+        public ActionResult SearchByDateAndTime(DateTime? searchByDateAndTime)
+
         {
-            if (searchDate != null)
+            if (searchByDateAndTime != null)
             {
                 using (var d = new UserContext())
                 {
-                    var busStops = from busStop in d.BusStops select busStop;
-                    return View(busStops
-                        .Include(bs => bs.CurrentBusStopIsDepartureForVoyages)
-                        .Where(x=>x.CurrentBusStopIsDepartureForVoyages
-                        .Any(stop => DbFunctions
-                        .TruncateTime(stop.DepartureDate) == searchDate))
+                    var voyages = from voyage in d.Voyages select voyage;
+                    return View(voyages
+                        .Where(v=>v.DepartureDate == searchByDateAndTime.Value)
                         .ToList());
                 }
             }
-            return View("SearchByDate");
+            return View("SearchByDateAndTime");
         }
 
         public ActionResult SearchBusStopsOfArrivalAndDeparture(string searchForDepartureStops, string searchForArrivalStops)
@@ -62,7 +60,8 @@ namespace WebApi.Controllers
                         
                     return View(busStops
                             .Include(bs => bs.CurrentBusStopIsDepartureForVoyages)
-                            .Where(x => x.Name == searchForDepartureStops).ToList());
+                            .Where(x => x.Name == searchForDepartureStops)
+                            .ToList());
                 }
             }
 

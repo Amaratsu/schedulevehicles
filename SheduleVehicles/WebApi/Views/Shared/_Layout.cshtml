@@ -6,7 +6,6 @@
     <title>SheduleVehicles</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/Registration/Authorization.js"></script>
 </head>
 <body onload="autoAuth()">
@@ -22,7 +21,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Search by name bus stop", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Search Bus Stops Of Arrival And Departure", "SearchBusStopsOfArrivalAndDeparture", "Home")</li>
+                    <li>@Html.ActionLink("Search bus stops of arrival and departure", "SearchBusStopsOfArrivalAndDeparture", "Home")</li>
+                    <li>@Html.ActionLink("Search by date and time", "SearchByDateAndTime", "Home")</li>
                     <li>@Html.ActionLink("Registration", "Registration", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">          
@@ -51,8 +51,8 @@
     <div class="container body-content">
         @RenderBody()
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
