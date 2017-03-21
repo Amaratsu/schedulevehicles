@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Domain.Entities.Order>
+@{
+    ViewBag.Title = "ListOfTickets";
+}
+
+<h2>List of tickets</h2>
+@if (Model == null)
+{
+    <h3 class="text-center">Ticket list is empty</h3>
+}
+
+
+
+    @if (Model != null)
+    {
+        <table class="table">
+            <tr>
+                <td><p>Name of the flight</p></td>
+                <td><p>Number of ticket</p></td>
+                <td><p>Flight number</p></td>
+                <td><p>First name</p></td>
+                <td><p>Last name</p></td>
+                <td><p>Seat</p></td>
+                <td><p>Document number</p></td>
+                <td><p>Departure date</p></td>
+                <td><p>Arrival date</p></td>
+                <td><p>Status</p></td>
+            </tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td><p>@item.Voyage.Name</p></td>
+                <td><p>@item.Ticket.Id</p></td>
+                <td><p>@item.Voyage.Number</p></td>
+                <td><p>@item.Ticket.PassengerFirstName</p></td>
+                <td><p>@item.Ticket.PassengerLastName</p></td>
+                <td><p>@item.Ticket.PassengerSeatNumber</p></td>
+                <td><p>@item.Ticket.PassengerDocumentNumber</p></td>
+                <td><p>@item.Voyage.DepartureDate</p></td>
+                <td><p>@item.Voyage.ArrivalDate</p></td>
+                <td><p>@item.Ticket.Status</p></td>
+            </tr>
+            }
+        </table>
+    }

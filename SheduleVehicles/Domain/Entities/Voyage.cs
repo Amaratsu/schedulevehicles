@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
@@ -15,11 +11,12 @@ namespace Domain.Entities
         public TimeSpan TravelTime { get; set; }
         public int Number { get; set; }
         public string Name { get; set; }
+        public int OfAllPlaces { get; set; }
         public int NumberOfSeats { get; set; }
         public decimal OneTicketCost { get; set; }
-        //[ForeignKey("DepartureBusStop")]
+        //
         public int DepartureBusStopId { get; set; }
-        //[ForeignKey("ArrivalBusStop")]
+        //
         public int ArrivalBusStopId { get; set; }
         //
         public virtual ICollection<Order> Orders { get; set; }

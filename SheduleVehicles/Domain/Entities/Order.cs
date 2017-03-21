@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
@@ -12,12 +6,6 @@ namespace Domain.Entities
     {
         [ForeignKey("Ticket")]
         public int Id { get; set; }
-        public OrderStatus Status { get; set; }
-        public enum OrderStatus
-        {
-            Reserved,
-            BoughtOut
-        }
         //
         public int VoyageId { get; set; }
         public Voyage Voyage { get; set; }

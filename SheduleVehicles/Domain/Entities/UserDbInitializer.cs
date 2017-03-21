@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
@@ -18,8 +15,7 @@ namespace Domain.Entities
                 LastName = "Alexov",
                 Email = "alexov@gmail.com",
                 Password = "alexov",
-                BirthDate = new DateTime(1987, 2, 1),
-                Tickets = new List<Ticket> { new Ticket {Id = 1, OrderId = 1, PassengerFirstName = "alex", PassengerLastName = "Alexeev", PassengerDocumentNumber = "112ghg212321", PassengerSeatNumber = 2}}
+                BirthDate = new DateTime(1987, 2, 1)
             });
             db.Users.Add(new User
             {
@@ -28,8 +24,7 @@ namespace Domain.Entities
                 LastName = "Ivanov",
                 Email = "ivanov@gmail.com",
                 Password = "ivanov",
-                BirthDate = new DateTime(2000, 2, 10),
-                Tickets = new List<Ticket> { new Ticket { Id = 1, OrderId = 1, PassengerFirstName = "x", PassengerLastName = "xx", PassengerDocumentNumber = "xxxxxxx", PassengerSeatNumber = 4 } }
+                BirthDate = new DateTime(2000, 2, 10)
             });
             db.Users.Add(new User
             {
@@ -38,20 +33,21 @@ namespace Domain.Entities
                 LastName = "SuperAdmin",
                 Email = "admin@gmail.com",
                 Password = "admin",
-                BirthDate = new DateTime(1980, 4, 1),
-                Tickets = new List<Ticket> { new Ticket { Id = 1, OrderId = 1, PassengerFirstName = "y", PassengerLastName = "yy", PassengerDocumentNumber = "yyyyyyyy", PassengerSeatNumber = 8 } }
+                BirthDate = new DateTime(1980, 4, 1)
             });
+
             Voyage v1 = new Voyage
             {
                 Id = 1,
                 DepartureBusStopId = 4,
                 ArrivalBusStopId = 1,
-                DepartureDate = new DateTime(2017, 3, 15, 19, 0, 0),
-                ArrivalDate = new DateTime(2017, 3, 15, 22, 34, 0),
+                DepartureDate = new DateTime(2017, 3, 23, 19, 0, 0),
+                ArrivalDate = new DateTime(2017, 3, 23, 22, 34, 0),
                 TravelTime = new TimeSpan(3, 34, 0),
                 Number = 22,
                 Name = "Могилев-Минск",
-                NumberOfSeats = 40,
+                NumberOfSeats = 10,
+                OfAllPlaces = 10,
                 OneTicketCost = 97.98m
             };
             Voyage v2 = new Voyage
@@ -59,12 +55,13 @@ namespace Domain.Entities
                 Id = 2,
                 DepartureBusStopId = 1,
                 ArrivalBusStopId = 4,
-                DepartureDate = new DateTime(2017, 3, 15, 14, 30, 0),
-                ArrivalDate = new DateTime(2017, 3, 15, 18, 4, 0),
+                DepartureDate = new DateTime(2017, 3, 22, 20, 30, 0),
+                ArrivalDate = new DateTime(2017, 3, 23, 0, 4, 0),
                 TravelTime = new TimeSpan(3, 34, 0),
                 Number = 22,
                 Name = "Минск-Могилев",
-                NumberOfSeats = 40,
+                NumberOfSeats = 0,
+                OfAllPlaces = 0,
                 OneTicketCost = 97.98m
             };
             Voyage v3 = new Voyage
@@ -72,12 +69,13 @@ namespace Domain.Entities
                 Id = 3,
                 DepartureBusStopId = 4,
                 ArrivalBusStopId = 3,
-                DepartureDate = new DateTime(2017, 3, 15, 14, 22, 0),
-                ArrivalDate = new DateTime(2017, 3, 15, 15, 57, 0),
+                DepartureDate = new DateTime(2017, 3, 23, 14, 22, 0),
+                ArrivalDate = new DateTime(2017, 3, 23, 15, 57, 0),
                 TravelTime = new TimeSpan(1, 35, 0),
                 Number = 23,
                 Name = "Могилев-Хотимск",
-                NumberOfSeats = 40,
+                NumberOfSeats = 10,
+                OfAllPlaces = 10,
                 OneTicketCost = 48.80m
             };
             Voyage v4 = new Voyage
@@ -85,12 +83,13 @@ namespace Domain.Entities
                 Id = 4,
                 DepartureBusStopId = 3,
                 ArrivalBusStopId = 4,
-                DepartureDate = new DateTime(2017, 3, 15, 17, 30, 0),
-                ArrivalDate = new DateTime(2017, 3, 15, 19, 5, 0),
+                DepartureDate = new DateTime(2017, 3, 23, 17, 30, 0),
+                ArrivalDate = new DateTime(2017, 3, 23, 19, 5, 0),
                 TravelTime = new TimeSpan(1, 35, 0),
                 Number = 23,
                 Name = "Хотимск-Могилев",
-                NumberOfSeats = 40,
+                NumberOfSeats = 10,
+                OfAllPlaces = 10,
                 OneTicketCost = 48.80m
             };
             Voyage v5 = new Voyage
@@ -98,12 +97,13 @@ namespace Domain.Entities
                 Id = 5,
                 DepartureBusStopId = 1,
                 ArrivalBusStopId = 2,
-                DepartureDate = new DateTime(2017, 3, 15, 14, 22, 0),
-                ArrivalDate = new DateTime(2017, 3, 15, 15, 57, 0),
+                DepartureDate = new DateTime(2017, 3, 23, 14, 22, 0),
+                ArrivalDate = new DateTime(2017, 3, 23, 15, 57, 0),
                 TravelTime = new TimeSpan(1, 35, 0),
                 Number = 24,
                 Name = "Минск-Брест",
-                NumberOfSeats = 40,
+                NumberOfSeats = 4,
+                OfAllPlaces = 4,
                 OneTicketCost = 55.42m
             };
             Voyage v6 = new Voyage
@@ -111,12 +111,13 @@ namespace Domain.Entities
                 Id = 6,
                 DepartureBusStopId = 2,
                 ArrivalBusStopId = 1,
-                DepartureDate = new DateTime(2017, 3, 15, 17, 30, 0),
-                ArrivalDate = new DateTime(2017, 3, 15, 19, 5, 0),
+                DepartureDate = new DateTime(2017, 3, 23, 17, 30, 0),
+                ArrivalDate = new DateTime(2017, 3, 23, 19, 5, 0),
                 TravelTime = new TimeSpan(1, 35, 0),
                 Number = 24,
                 Name = "Брест-Минск",
-                NumberOfSeats = 40,
+                NumberOfSeats = 10,
+                OfAllPlaces = 10,
                 OneTicketCost = 55.42m
             };
 

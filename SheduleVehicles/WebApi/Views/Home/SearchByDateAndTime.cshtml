@@ -27,10 +27,16 @@
                     <p><b>Departure Date:</b> @item.DepartureDate</p>
                     <p><b>Arrival Date:</b> @item.ArrivalDate</p>
                     <p><b>Travel Time:</b> @item.TravelTime</p>
-                    <p><b>Number Of Seats:</b> @item.NumberOfSeats</p>
-                    <p>
-                        <b>One Ticket Cost:</b> @item.OneTicketCost руб.
-                    </p>
+                    <p><b>Number Of Seats:</b> @item.OfAllPlaces</p>
+                    <p><b>One Ticket Cost:</b> @item.OneTicketCost руб.</p>
+                    @if (item.OfAllPlaces <= 0)
+                    {
+                        <button class="btn btn-warning btn-block" disabled>No tickets</button>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("To order", "TicketСlearance", "Home", new { id = item.Id }, new { @class = "btn btn-success btn-block" })
+                    } 
             </div>
         }
     }

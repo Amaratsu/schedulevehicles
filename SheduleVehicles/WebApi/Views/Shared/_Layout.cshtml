@@ -25,22 +25,23 @@
                     <li>@Html.ActionLink("Search by date and time", "SearchByDateAndTime", "Home")</li>
                     <li>@Html.ActionLink("Registration", "Registration", "Home")</li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">          
+                <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <div id="stateAuth" style="display: none">
-                            <div class="form-inline" style="margin-top: 8px">
-                                <div class="form-group">
-                                    <label class="sr-only" for="emailAuth">Email</label>
-                                    <input type="email" class="form-control" id="emailAuth" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="passwordAuth">Password</label>
-                                    <input type="password" class="form-control" id="passwordAuth" placeholder="Password">
-                                </div>
-                                <button type="submit" class="btn btn-default" onclick="auth()">Sign in</button>
-                            </div>
+                        <div id="stateAuth" style="display: none">                  
+                    <div class="form-inline" style="margin-top: 8px">
+                        <div class="form-group">
+                            <label class="sr-only" for="emailAuth">Email</label>
+                            <input type="email" class="form-control" id="emailAuth" placeholder="Email">
                         </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="passwordAuth">Password</label>
+                            <input type="password" class="form-control" id="passwordAuth" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-default" onclick="auth()">Sign in</button>
+                    </div>
+</div>
                         <div id="stateUser" class="navbar-brand" style="padding-top: 8px; display: none">
+                            @Html.ActionLink("My tickets", "GetAListOfTickets", "Home")
                             Hello, <a id="firstAndLastName"></a><button type="button" class="btn btn-warning" style="margin-left: 10px" onclick="logout()">Logout</button>
                         </div>
                     </li>

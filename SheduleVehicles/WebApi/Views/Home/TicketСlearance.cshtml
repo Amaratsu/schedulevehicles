@@ -1,0 +1,59 @@
+﻿
+@model WebApi.ViewModels.TicketViewModel
+
+@{
+    ViewBag.Title = "TicketСlearance";
+}
+
+<h2>TicketСlearance</h2>
+
+<form method="post">
+    <div class="form-group hidden">
+        <input type="number" class="form-control" id="Voiage" required="" name="Voyage" readonly="" value="@ViewBag.Voyage">
+    </div>
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="Name" required="" name="Name" readonly="" value="@ViewBag.Name">
+    </div>
+    <div class="form-group">
+        <label for="Number">Number</label>
+        <input type="number" class="form-control" id="Number" required="" name="Number" readonly="" value="@ViewBag.Number">
+    </div>
+    <div class="form-group">
+        <label for="PassengerFirstName">PassengerFirstName</label>
+        <input type="text" class="form-control" id="PassengerFirstName" required="" name="PassengerFirstName">
+    </div>
+    <div class="form-group">
+        <label for="PassengerLastName">PassengerLastName</label>
+        <input type="text" class="form-control" id="PassengerLastName" required="" name="PassengerLastName">
+    </div>
+    <div class="form-group">
+        <label for="PassengerDocumentNumber">PassengerDocumentNumber</label>
+        <input type="text" class="form-control" id="PassengerDocumentNumber" required="" name="PassengerDocumentNumber">
+    </div>
+    <div class="form-group">
+        <label for="SelectSeatNumber">SelectSeatNumber</label>
+        @Html.DropDownList("SelectSeatNumber", ViewBag.SelectSeatNumber as SelectList, new {@class = "form-control"})
+    </div>
+    <div class="form-group">
+        <label for="Status">Status</label>
+        <select class="form-control" id="Status" name="Status">
+            <option value="Reserved">Reserved</option>
+            <option value="BoughtOut">BoughtOut</option>
+        </select>
+    </div>
+    <div class="form-group hidden" id="Cost">
+        <label for="TicketCost">TicketCost</label>
+        <input type="text" class="form-control" id="TicketCost" readonly="" name="TicketCost" value="@ViewBag.TicketCost">
+    </div>
+    <button type="submit" class="btn btn-warning" id="Reserved">Reserved</button>
+    <button type="submit" class="btn btn-warning hidden" id="BoughtOut">BoughtOut</button>
+    @Html.ActionLink("Back to list", "Index", null, new {@class = "btn btn-info"})
+</form>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/TicketСlearance/ticket-сlearance.js"></script>
+}
+
